@@ -1,0 +1,771 @@
+@charset "UTF-8";
+@import "fonts";
+@import "settings";
+@import "topmenu";
+
+$maxWidth: 1100px;
+@mixin bg_top_menu ($bgcolor) {
+		.nav_top {
+			nav.big_menu {
+				ul {
+					li {
+						&:hover{
+							background-color: $bgcolor;
+						}
+					}
+					.act {
+						a {
+							background-color: $bgcolor;
+						}
+					}
+				}
+			}
+		}
+}
+
+html {
+	font-family: 'Lato', sans-serif;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.wr {
+	@extend %flex;  /*стандартный экстенд для контейнера*/
+	max-width: $maxWidth;
+	flex-direction: column;   /*направление главной оси - сверху вниз*/
+	justify-content: space-between; /*флеш блоки будут расдвинуты в стороны по главной оси*/
+	margin: 0 auto; /*надо поточнее выяснить назначение, короче делает посередине */
+	min-height: inherit;  /*задает высоту, как у родительского блока, т.е. как у section*/
+}
+
+section#Home{
+	position: relative;
+	min-height: 100vh;
+	background: no-repeat center; /*настройки для фоновой картинки*/
+	-webkit-background-size: cover;
+	background-size: cover;
+
+	.wr{
+		@extend %top_menu;
+		@include bg_top_menu (rgb(116, 199, 213));
+
+		.slogan {
+			@extend %flex;
+			align-self: center;
+			flex: 3;
+			.for-image {
+				display: block;
+				/*width: 840px;
+				height: 170px;*/
+				width: 90vw;
+				height: 30vh;
+				max-width: 0.8*$maxWidth;
+				background: no-repeat center; /*настройки для фоновой картинки*/
+/*				-webkit-background-size: 840px 170px;
+				background-size: 840px 170px;
+*/				-webkit-background-size: contain;
+				background-size: contain;
+
+				margin: auto;
+			}
+		}
+		.dots {
+			@extend %flex;
+			@extend %ul;
+			flex: 1 100%;
+			justify-content: center;
+			align-items: center;
+
+			li {
+				width: 20px;
+				height: 20px;
+				opacity: 0.7;
+				background-color: white;
+				border-radius: 50%;
+				margin-right: 40px;
+				transition: all 0.3s ease;
+				&:last-of-type {
+					margin-right: 0px;
+				}
+				&:hover {
+					background-color: #74c7d5;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+section#Service{
+	position: relative;
+	background: no-repeat center 0;
+	-webkit-background-size: cover;
+	background-size: cover;    /*настройки для фоновой картинки*/
+	min-height: 100vh;
+	.wr {
+		@extend %top_menu;
+		@include bg_top_menu (rgb(223, 92, 100));
+
+		.ourservice {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			text-align: center;
+			max-width: 95%;
+			flex: 2;
+			flex-direction: column;
+			justify-content: center;
+			-ms-align-items: center;
+			align-items: center;
+			padding: 10px;
+			box-sizing: border-box;
+			h1{
+			  font-size: 60px;
+			  color: rgb(255, 255, 255);
+			  text-transform: uppercase;
+			  font-weight: lighter;
+			  /*margin-top: 0px;*/
+			  margin: 0;
+			  margin-bottom: 4vh;
+			}
+			h3 {
+			  	font-size: 20px;
+			  	color: rgb(255, 255, 255);
+				text-transform: uppercase;
+				font-weight: normal;
+				margin: 0;
+				margin-bottom: 2vh;
+			  	span {
+					color: #e59398;
+			  	}
+			}
+			h5 {
+	  			font-size: 14px;
+	  			color: rgb(255, 204, 207);
+	  			margin: 0;
+			}
+		}
+		.services {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+			justify-content: space-around; /*флеш блоки будут расдвинуты равномерно по гор оси*/
+			align-items: center;
+			flex: 1 100%;
+			.card {   /* это класс прямоугольной области, где есть круглая картинка + h2 + h5*/
+				margin: 5px 5px 5px 5px;
+				width: 260px;
+				height: 400px;
+				text-align: center;
+				/*background: url(../img/card_bg.jpg);/*по умолчани. считается, что сейчас мы 
+				находимся в папке css, поэтому из нее надо сначала выйти, а затем перейти в папку img 
+				и открыть там нужный файл*/
+				border-radius: 5px;
+				background-color: rgb(200, 83, 90);
+				opacity: 0.8;
+				&:hover{
+					background-color: #e5656d;
+					cursor: pointer;  /*когда наводишь мышь на объект, то меняется курсор на "руку"*/
+				};
+				.bl{
+					display: block;
+					width: 140px;
+					margin: 0 auto; /*выравнивает блок bl внутри card*/
+					margin-top: 42px;
+					.cardbg {
+						background-color: #fff;
+						width: 140px;
+						height: 140px;
+						border-radius: 50%;
+						display: flex;
+
+						.img {
+							margin:auto;
+							width: 120px;
+							height: 120px;
+							border: 5px solid rgb(200, 83, 90);
+							border-radius: 50%;
+							display: flex;						
+							img {
+								margin: auto;
+							}
+						}	
+					}			
+				}
+				h2{
+					font-size: 30px;
+					color: rgb(255, 255, 255);
+					text-transform: uppercase;
+					font-weight: lighter;
+				}
+				h5{
+					margin: 45px 25px 5px 25px; /*отступы - 5 сверху и снизу, 25 - слева и справа*/
+					font-size: 14px;
+	  				color: rgb(254, 254, 254);
+	  				font-weight: normal;
+				}
+			}
+		}
+	}
+}
+
+section#About{
+	position: relative;
+	background: no-repeat center 0;
+	-webkit-background-size: cover;
+	background-size: cover;    /*настройки для фоновой картинки*/
+	min-height: 100vh;
+	.wr {
+		@extend %top_menu;
+		@include bg_top_menu (rgb(145, 119, 142));
+
+		.about {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			text-align: center;
+			max-width: inherit;
+			flex: 2;
+			flex-direction: column;
+			justify-content: center;
+			-ms-align-items: center;
+			align-items: center;
+			padding: 10px;
+			h1{
+			  font-size: 60px;
+			  color: rgb(255, 255, 255);
+			  text-transform: uppercase;
+			  font-weight: lighter;
+  			  margin: 0;
+			  margin-bottom: 4vh;
+			}
+			h5 {
+	  			font-size: 14px;
+				color: rgb(230, 209, 227);
+	  			margin: 0;
+	  			margin-bottom: 5vh;
+			}
+			.green{
+				background-color: rgb(161, 202, 108);
+				width: 276px;
+				height: 54px;
+				border-radius: 5px;
+				margin: 0 auto;
+				@extend %flex;  /*стандартный экстенд для контейнера*/
+				/*margin-top: 60px;*/
+				h2 {
+				font-size: 25px;
+				color: white;
+				text-transform: uppercase;
+				margin: auto;
+				}
+			}
+			.green_arrow_vn{
+				width: 22px;
+				height: 22px;
+				margin: 0 auto;
+				position: relative;
+				.green_arrow{
+					width: 15px;
+					height: 15px;
+					margin: 0 auto;
+					background-color: rgb(161, 202, 108);
+					transform: rotate(45deg);
+					position: absolute;
+					top: -10px;
+				}
+			}
+		}
+
+		.team {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			max-width: $maxWidth;
+			flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+			justify-content: space-around; /*флеш блоки будут расдвинуты равномерно по гор оси*/
+			flex: 1 100%;
+			.card {   /* это класс прямоугольной области, где есть круглая картинка + h2 + h5*/
+				width: 260px;
+				height: 380px;
+				text-align: center;
+				/*background: url(../img/card_bg.jpg);/*по умолчани. считается, что сейчас мы 
+				находимся в папке css, поэтому из нее надо сначала выйти, а затем перейти в папку img 
+				и открыть там нужный файл*/
+				border-radius: 5px;
+				background-color: rgb(77, 63, 75);
+				opacity: 0.7;
+				margin: 10px 5px;
+				&:hover{
+					cursor: pointer;  /*когда наводишь мышь на объект, то меняется курсор на "руку"*/
+					opacity: 0.8;
+					h2 {
+						color: #fff;
+					}
+					h5 {
+						color: rgb(255, 137, 115);
+					}
+					.bl {
+						.cardbg{
+							.img {
+								border-color: #df5c64; /*красная граница*/
+								background: url(../img/User_hover.jpg);	
+							}
+						}
+					}
+					.social {
+						.fb {background: url(../img/fb_hover.jpg);}
+						.tw {background: url(../img/tw_hover.jpg);}
+						.gplus{background: url(../img/gplus_hover.jpg);}
+						.in{background: url(../img/in_hover.jpg);}
+					}
+				};
+				.bl{
+					display: block;
+					width: 165px;
+					height: 165px;
+					margin: 0 auto; /*выравнивает блок bl внутри card*/
+					margin-top: 42px;
+					.cardbg {    /*контейнер, чтобы сделать белую обводку вокруг img*/
+						background-color: #fff;
+						width: 165px;
+						height: 165px;
+						border-radius: 50%;
+						display: flex;
+						.img {
+							margin:auto; /*по центру контейнера по гор и верт*/
+							width: 155px;
+							height: 155px;
+							border: 5px solid #a1859e; /*фиолетовая граница*/
+							border-radius: 50%;
+							background: url(../img/User1.jpg);						
+						}	
+					}			
+				}
+				h2{
+					font-weight: bold;
+					font-size: 25px;
+					color: rgb(199, 182, 197);
+					text-transform: uppercase;
+					margin-bottom: 10px;
+				}
+				h5{
+					margin: 0px 5px 5px 5px; /*отступы - 15 сверху, 5 - слева, справа и внизу*/
+					font-size: 14px;
+	  				font-weight: normal;
+					color: rgb(161, 202, 108);
+				}
+				.social {
+					display: flex;
+					justify-content: space-around;
+					max-width: 180px;
+					margin: 30px auto 0px auto;
+
+					.fb {
+						width: 31px;
+						height: 31px;
+						border-radius: 50%;
+						background: url(../img/fb.jpg);
+					}
+					.tw {
+						width: 31px;
+						height: 31px;
+						background: url(../img/tw.jpg);
+						border-radius: 50%;
+					}
+					.gplus {
+						width: 31px;
+						height: 31px;
+						background: url(../img/gplus.jpg);
+						border-radius: 50%;
+					}
+					.in {
+						width: 31px;
+						height: 31px;
+						background: url(../img/in.jpg);
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+	}
+}
+
+section#Work{
+	position: relative;
+	background: no-repeat center 0;
+	-webkit-background-size: cover;
+	background-size: cover;    /*настройки для фоновой картинки*/
+	min-height: 100vh;
+	.wr {
+		@extend %top_menu;
+		@include bg_top_menu (rgb(161, 202, 108));
+
+		.ourWork {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			text-align: center;
+			max-width: inherit;
+			flex: 2;
+			flex-direction: column;
+			justify-content: center;
+			-ms-align-items: center;
+			align-items: center;
+			padding: 10px;
+			box-sizing: border-box;
+			h1{
+			  font-size: 60px;
+			  color: rgb(255, 255, 255);
+			  text-transform: uppercase;
+			  font-weight: lighter;
+   			  margin: 0;
+			  margin-bottom: 3vh;
+
+			}
+			h5 {
+				font-size: 14px;
+				color: rgb(230, 209, 227);
+				margin: 0;
+			}
+		}
+		.row {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			max-width: $maxWidth;
+			flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+
+			border-top: 1px solid rgb(148, 185, 99);
+			border-bottom: 1px solid rgb(148, 185, 99);
+			align-items: center;
+			min-height: 9vh;
+			margin: 10px;
+			padding: 10px;
+			h3 {
+				color: white;
+				text-decoration: none;
+				font-size: 20px;
+				font-weight: bold;
+				margin: 0px;
+			}
+			nav {
+				ul {
+					@extend %ul, %flex;
+					justify-content: center;
+					li {
+						a{
+							display: block;
+							text-align: center;
+							font-size: 16px;
+							color: white;
+							text-decoration: none;
+							font-weight: bold;
+							padding: 10px 30px;  /*чтобы получился пункт меню*/
+						}
+						&:hover{
+							border-radius: 4px;
+							background-color: rgb(245, 193, 73);
+						}
+					}
+				}
+			}
+		}
+		.works{
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			max-width: $maxWidth;
+			flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+			justify-content: space-around; /*флеш блоки будут раздвинуты в стороны по гор оси*/
+			/*margin: 0 auto; /*надо поточнее выяснить назначение, короче делает посередине */
+			flex: 1 100%;
+			.card {
+				width: 260px;
+				height: 250px;
+				padding: 0px;
+				margin: 5px;
+				border-radius: 4px;
+				background-color: #fff;
+				text-align: center;
+				@extend %flex;  /*стандартный экстенд для контейнера*/
+				flex-direction: column;
+				justify-content: space-between;
+				.img {
+					width: 260px;
+					height: 200px;
+					background: no-repeat center;  /*настройки для фоновой картинки*/
+					-webkit-background-size: cover;
+					background-size: cover;
+					position: absolute;
+				}
+				.for-hover {
+					width: 260px;
+					height: 200px;
+					background: url(../img/for-hover.jpg) no-repeat center;  /*настройки для фоновой картинки*/
+					-webkit-background-size: cover;
+					background-size: cover;
+					position: relative;
+					opacity: 0;
+				}
+				h3{
+					margin: 0px auto 17px auto;
+					font-size: 14px;
+					color: rgb(114, 114, 114);
+					text-transform: uppercase;
+				}
+				&:hover{
+					cursor: pointer;  /*когда наводишь мышь на объект, то меняется курсор на "руку"*/
+					.for-hover {
+						opacity: 1;
+					}
+					h3 {
+						color: #000;
+					}
+				}
+
+			}
+		}
+	}
+}
+
+section#Contact{
+	position: relative;
+	background: no-repeat center 0;
+	-webkit-background-size: cover;
+	background-size: cover;    /*настройки для фоновой картинки*/
+	min-height: 86vh;
+	.wr {
+		@extend %top_menu;
+		@include bg_top_menu (#82c8bd);
+
+		.contactUs {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			text-align: center;
+			max-width: 800px;
+			margin: 0 auto;
+			flex: 2;
+			flex-direction: column;
+			justify-content: center;
+			-ms-align-items: center;
+			align-items: center;
+			padding: 10px;
+			box-sizing: border-box;
+			h1{
+			  font-size: 60px;
+			  color: rgb(255, 255, 255);
+			  text-transform: uppercase;
+			  font-weight: lighter;
+   			  margin: 0;
+			  margin-bottom: 3vh;
+
+			}
+			h5 {
+				font-size: 14px;
+				color: rgb(230, 209, 227);
+				margin: 0;
+			}
+		}
+
+		.container {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			max-width: $maxWidth;
+			flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+			justify-content: center; /*флеш блоки будут раздвинуты в стороны по гор оси*/
+			flex: 1 100%;
+			padding: 10px;
+			box-sizing: border-box;
+			.adress {
+				/*height: 30vh;*/
+				min-height: 275px; /*вставил недавно для узких экранов*/
+				margin: 0;
+				margin-bottom: 10px;
+				width: 49%;
+				min-width: 535px;  /* для узких экранов*/
+				max-width: 800px;  /* для узких экранов*/
+				flex-grow: 1;
+				padding: 5px;
+				box-sizing: border-box;
+				.row1 {
+					color: white;
+					font-size: 30px;
+					margin: 0px;
+					margin-bottom: 10px;
+					width: 100%;
+					height: 40px;
+				}
+				.row2 {
+					@extend %flex;  /*стандартный экстенд для контейнера*/
+					flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+					justify-content: space-between; /*флеш блоки будут раздвинуты в стороны по гор оси*/
+					/*height: 23vh;*/
+					height: 220px;
+					width: 100%;
+					.text {
+						min-width: 215px;
+						flex-grow: 0;
+						span {
+							color: #c0dfda;
+							font-size: 20px;
+						}
+						p {
+							color: white;
+							font-size: 16px;
+						}
+						a {
+							text-decoration: none;
+							font-size: 16px;
+							color: white;
+						}
+					}	
+					.map {
+						flex-grow: 0;
+						width: 300px;
+						height: 220px;
+
+					}	
+				}
+			}
+
+			.forms{
+				
+				/*height: 40vh;*/
+				min-height: 350px; /*вставил недавно для узких экранов*/
+				min-width: 360px;  /*вставил недавно для узких экранов*/
+				max-width: 800px;
+				width: 49%;
+				flex-grow: 1;
+				margin: 0;
+				padding: 5px;
+				box-sizing: border-box;
+
+				.row1 {
+					color: white;
+					font-size: 30px;
+					margin: 0px;
+					margin-bottom: 10px;
+					height: 40px;
+				}
+				.row2 {
+					@extend %flex;  /*стандартный экстенд для контейнера*/
+					flex-direction: row; /*как и по умолчанию - направление главной оси - слева направо*/
+					justify-content: space-between; /*флеш блоки будут раздвинуты в стороны по гор оси*/
+					height: 220px;
+					
+					[type="text"], [type="email"] {
+						height: 20%;
+						width: 48%;
+						padding: 0 20px;
+						box-sizing: border-box;
+						background-color: #68a097;
+						border-radius: 4px;
+						margin-bottom: 2vh;
+						color: #82c8bd;
+						font-size: 16px;
+						font-weight: lighter;
+						border: none;
+						text-decoration: none;
+						&:focus {
+							background-color: white;
+							color: #b5b5b5;
+						}
+					}
+					textarea {
+						padding: 20px;
+						box-sizing: border-box;
+						width: 100%;
+						background-color: #68a097;
+						border-radius: 4px;
+						height: 75%;
+						color: #82c8bd;
+						font-size: 16px;
+						font-weight: lighter;
+						border: none;
+						text-decoration: none;
+						&:focus {
+							background-color: white;
+							color: #b5b5b5;
+						}
+					}
+				}
+				.row3 {
+					height: 100px;
+					@extend %flex;  /*стандартный экстенд для контейнера*/
+					[type="submit"] {
+						margin: auto;
+						width: 260px;
+						height: 50px;
+						background-color: #df5c64;
+						border-radius: 4px;
+						border: none;
+						box-shadow: inset 0 -4px 0 rgba(178, 74, 80, 0.5);
+						color: white;
+						font-size: 26px;
+						text-transform: uppercase;
+						opacity: 0.7;
+						transition: opacity 0.3s ease;
+						cursor: pointer;
+						&:hover {
+							opacity: 1;
+						};
+					}
+
+				}
+			}
+		}
+	}
+	
+	.social {
+		min-height: 14vh;
+		min-height: 100px;
+		background-color: #68a097;
+		@extend %flex;  /*стандартный экстенд для контейнера*/	
+		.for-social {
+			@extend %flex;  /*стандартный экстенд для контейнера*/
+			margin: auto;
+			width: 360px;
+			height: 60px;
+			justify-content: space-between;
+			.fb, .tw, .gplus, .in {
+				width: 60px;
+				height: 60px;
+				background-color: #82c8bd;
+				border-radius: 50%;
+				cursor: pointer;
+			}
+			.fb {
+				background: url(../img/fb_green.jpg) 0 0 no-repeat;
+			}
+			.tw {
+				background: url(../img/tw_green.jpg) 0 0 no-repeat;
+			}
+			.gplus {
+				background: url(../img/gplus_green.jpg) 0 0 no-repeat;
+			}
+			.in {
+				background: url(../img/in_green.jpg) 0 0 no-repeat;
+			}
+
+		}
+	}	
+}
+
+@media screen and (max-width: 1980px) {
+    .big_menu {
+        display: block;
+    }
+	.button_hidden_menu {
+		display: none;
+	}	
+
+	#PORTFOLIO {
+		justify-content: space-between;
+	}
+}
+
+@media screen and (max-width: 768px) {
+    .big_menu {
+        display: none;
+    }
+	.button_hidden_menu {
+		display: block;
+	}	
+
+	#PORTFOLIO {
+		justify-content: center;	
+		h3 {
+			min-width: 190px; /*это чтобы отодвинуть блок навигации, когда ширина экрана меньше 768*/
+			text-align: center;
+		}
+	
+	}
+
+}
